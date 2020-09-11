@@ -1,0 +1,32 @@
+<button (click)="redirectToSubjectForm()">Add new subject</button>
+<button (click)="Logout()">Logout</button>
+<div *ngIf="activeForm">
+    <h1>NEW SUBJECT!</h1>
+    <input type="text" placeholder="Title" #title>
+<input type="text" placeholder="Description" #descriptin><br>
+<div *ngIf="msgError!=''">
+  {{msgError}}
+</div>
+<button (click)="Add(title,descriptin)">Add</button>
+</div>
+
+<div *ngFor="let s of subjects">
+<h3>Title: </h3>{{s.titre}}<br>
+<h3>description: </h3>{{s.titre}}<br>
+<div *ngIf="s.nbVoteOui!=0 && s.totalVote!=0">
+    <h4>% positive Vote : </h4>{{s.nbVoteOui * 100 / s.totalVote}} % Yes<br>
+     Number of voters :{{ s.totalVote}} 
+</div>
+<input type="radio" id="Yes" name="gender" value="Yes" #yes>
+  <label for="Yes">Yes</label><br>
+  <input type="radio" id="No" name="gender" value="No" #no>
+  <label for="No">No</label><br>
+  <div *ngIf="voteError!=''">
+{{voteError}}
+  </div>
+ <button (click)="vote(yes,no,s.id)">Vote</button>
+ <div *ngIf="resultVote!=''">
+    {{resultVote}}
+      </div>
+<hr>
+</div>
